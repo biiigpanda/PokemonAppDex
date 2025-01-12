@@ -11,7 +11,7 @@ import SwiftUI
 struct PokemonAppDexApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PokemonExploreAssembly.view(dto: PokemonExploreAssemblyDTO())
         }
     }
 }
