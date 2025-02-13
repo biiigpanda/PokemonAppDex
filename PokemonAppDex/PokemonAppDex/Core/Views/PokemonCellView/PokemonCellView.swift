@@ -12,16 +12,22 @@ struct PokemonCellView: View {
     var imageURL: URL?
     
     var body: some View {
-        HStack {
-            AsyncImage(url: imageURL) { image in
-                image
-                    .image?
+        VStack {
+            ZStack{
+                Image("img_pokeball")
                     .resizable()
+                    .frame(maxWidth: 170, maxHeight: 170)
+                    .opacity(0.5)
+                AsyncImage(url: imageURL) { image in
+                    image
+                        .image?
+                        .resizable()
+                }
+                .scaledToFit()
+                .frame(width: 140, height: 140)
             }
-            .scaledToFit()
-            .frame(width: 100, height: 100)
-            
             Text(name)
         }
+        .background()
     }
 }
