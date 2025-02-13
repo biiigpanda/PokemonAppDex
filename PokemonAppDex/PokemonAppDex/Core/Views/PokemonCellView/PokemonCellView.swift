@@ -10,6 +10,7 @@ import SwiftUI
 struct PokemonCellView: View {
     let name: String
     var imageURL: URL?
+    let id: Int
     
     var body: some View {
         VStack {
@@ -26,7 +27,15 @@ struct PokemonCellView: View {
                 .scaledToFit()
                 .frame(width: 140, height: 140)
             }
-            Text(name)
+            HStack {
+                Text(name.capitalized)
+                    .font(.custom("Gameplay", size: 18))
+                HStack {
+                    Text("#\(id)")
+                        .font(.custom("Gameplay", size: 18))
+                }
+                .frame(alignment: .trailing)
+            }
         }
         .background()
     }

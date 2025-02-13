@@ -15,7 +15,7 @@ struct PokemonExploreView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    let gridElements = [GridItem(.flexible(minimum:50)),GridItem(.flexible(minimum:50))]
+    let gridElements = [GridItem(),GridItem()]
 
     var body: some View {
         NavigationStack {
@@ -23,10 +23,11 @@ struct PokemonExploreView: View {
                 LazyVGrid(columns: gridElements, content: {
                     ForEach(viewModel.pokemonList, id: \.self) { pokemon in
                         //                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id))) {
-                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL)
+                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
                         //                    }
                     }
                 })
+                .padding(.horizontal,12)
             }
             .navigationTitle("Pokedex Kanto")
             .navigationBarTitleDisplayMode(.inline)
