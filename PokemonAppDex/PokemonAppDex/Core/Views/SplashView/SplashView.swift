@@ -15,7 +15,7 @@ struct SplashView: View {
             PokemonExploreAssembly.view(dto: PokemonExploreAssemblyDTO())
         } else {
             VStack {
-                Image("main_logo")
+                Image(Constants.Identifier.mainLogo)
                     .resizable()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .ignoresSafeArea()

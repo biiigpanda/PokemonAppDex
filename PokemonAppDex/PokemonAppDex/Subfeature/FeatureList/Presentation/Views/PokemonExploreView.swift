@@ -19,10 +19,9 @@ struct PokemonExploreView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.pokemonList, id: \.self) { pokemon in
-                    let _ = print(viewModel.pokemonList)
-   /*                 NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id))) {
+//                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id))) {
                         PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL)
-                    }*/
+//                    }
                 }
             }
         }
