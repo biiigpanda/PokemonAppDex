@@ -29,7 +29,7 @@ struct PokemonExploreView: View {
                 })
                 .padding(.horizontal,12)
             }
-            .navigationTitle("Pokedex Kanto")
+            .navigationTitle("Pokedex")
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {

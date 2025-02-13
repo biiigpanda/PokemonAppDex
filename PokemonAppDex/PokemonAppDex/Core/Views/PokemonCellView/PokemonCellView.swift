@@ -18,7 +18,7 @@ struct PokemonCellView: View {
                 Image("img_pokeball")
                     .resizable()
                     .frame(maxWidth: 170, maxHeight: 170)
-                    .opacity(0.5)
+                    .opacity(0.8)
                 AsyncImage(url: imageURL) { image in
                     image
                         .image?
@@ -29,14 +29,17 @@ struct PokemonCellView: View {
             }
             HStack {
                 Text(name.capitalized)
-                    .font(.custom("Gameplay", size: 18))
+                    .font(.custom("Gameplay", size: 16))
                 HStack {
                     Text("#\(id)")
-                        .font(.custom("Gameplay", size: 18))
+                        .font(.custom("Gameplay", size: 16))
                 }
                 .frame(alignment: .trailing)
             }
+            .padding(.bottom, 8)
         }
-        .background()
+        .frame(maxWidth: 220, maxHeight: 220)
+        .background(Color(red: 100.0/255.0, green: 205.0/255.0, blue: 189.0/255.0, opacity: 0.5))
+        .clipShape(RoundedRectangle(cornerRadius: 10.0))
     }
 }
