@@ -14,19 +14,26 @@ struct PokemonExploreView: View {
     init(_ viewModel: PokemonExploreViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-        
+    
+    let gridElements = [GridItem(),GridItem()]
+
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.pokemonList, id: \.self) { pokemon in
-//                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id))) {
-                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL)
-//                    }
-                }
+            ScrollView {
+                LazyVGrid(columns: gridElements, content: {
+                    ForEach(viewModel.pokemonList, id: \.self) { pokemon in
+                        //                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id))) {
+                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
+                        //                    }
+                    }
+                })
+                .padding(.horizontal,12)
             }
+            .navigationTitle("Pokedex")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
-        viewModel.onAppear()
+            viewModel.onAppear()
         }
     }
 }
