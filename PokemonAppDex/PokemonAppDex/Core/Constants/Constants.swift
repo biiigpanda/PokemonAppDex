@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     static let pokeApiURL: String = "https://pokeapi.co/api/v2/"
-    static let pokeApiArtworkURL: String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/%d.png"
+    static let pokeApiArtworkURL: String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%d.png"
     static let pokeApiTimeoutInterval: Double = 15.0
     
     static let pokeApiPokemonListlimit: Int = 1025

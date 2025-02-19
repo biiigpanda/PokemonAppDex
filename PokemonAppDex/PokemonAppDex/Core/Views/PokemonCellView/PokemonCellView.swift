@@ -17,7 +17,7 @@ struct PokemonCellView: View {
             ZStack{
                 Image("img_pokeball")
                     .resizable()
-                    .frame(maxWidth: 170, maxHeight: 170)
+                    .frame(maxWidth: 180, maxHeight: 180)
                     .opacity(0.8)
                 AsyncImage(url: imageURL) { image in
                     image
@@ -25,7 +25,7 @@ struct PokemonCellView: View {
                         .resizable()
                 }
                 .scaledToFit()
-                .frame(width: 140, height: 140)
+                .frame(width: 170, height: 170)
             }
             HStack {
                 Text(name.capitalized)
