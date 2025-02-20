@@ -28,7 +28,6 @@ class PokemonExploreViewModel: BaseViewModel,ObservableObject {
     
     @MainActor
     func loadPokemonList() {
-        print("loadPokemonList")
         self.state = .loading
         Task {
             do {
