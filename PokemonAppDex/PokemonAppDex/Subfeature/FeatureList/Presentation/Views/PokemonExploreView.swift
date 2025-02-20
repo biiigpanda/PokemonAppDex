@@ -16,15 +16,17 @@ struct PokemonExploreView: View {
     }
     
     let gridElements = [GridItem(),GridItem()]
-
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: gridElements, content: {
                     ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
-                        //                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id))) {
-                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
-                        //                    }
+                        NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
+                            PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
+                                .frame(maxWidth: 300, maxHeight: 220)
+                                .foregroundStyle(.black)
+                        }
                     }
                 })
                 .padding(.horizontal,12)
