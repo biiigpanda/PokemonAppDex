@@ -30,11 +30,17 @@ struct PokemonExploreView: View {
                 .padding(.horizontal,12)
             }
             .searchable(text: $viewModel.searchText, prompt: "Search by number or name")
-            .navigationTitle("Pokedex")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Pokedex")
+                        .font(.custom("Ketchum", size: 50))
+                }
+            }
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             viewModel.onAppear()
         }
+        .padding(.top, 8)
     }
 }

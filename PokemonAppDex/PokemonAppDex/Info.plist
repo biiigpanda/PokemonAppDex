@@ -4,6 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Ketchum.otf</string>
+		<string>Ketchum Italic.otf</string>
 		<string>Gameplay.ttf</string>
 	</array>
 </dict>
