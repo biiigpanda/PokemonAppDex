@@ -20,6 +20,7 @@ class PokemonExploreViewModel: BaseViewModel,ObservableObject {
     
     @Published var pokemonList: [PokemonModel] = [PokemonModel]()
     @Published var showError = false
+    @Published var searchText: String = ""
 
     public override func onAppear() {
         self.loadPokemonList()
@@ -27,6 +28,7 @@ class PokemonExploreViewModel: BaseViewModel,ObservableObject {
     
     @MainActor
     func loadPokemonList() {
+        print("loadPokemonList")
         self.state = .loading
         Task {
             do {
@@ -38,6 +40,23 @@ class PokemonExploreViewModel: BaseViewModel,ObservableObject {
                 showError = true
             }
         }
+    }
+    
+    var filteredPokemonList: [PokemonModel] {
+        guard !searchText.isEmpty else { return pokemonList }
+        if isNumber(searchText) {
+            return pokemonList.filter { pokemonId in
+                pokemonId.id.description.lowercased().contains(searchText.lowercased())
+            }
+        } else {
+            return pokemonList.filter { pokemonName in
+                pokemonName.name.lowercased().contains(searchText.lowercased())
+            }
+        }
+    }
+    
+    func isNumber(_ text: String) -> Bool {
+        return Double(text) != nil
     }
     
    /* func modalActionPerfomed(action: ModalAction) {
