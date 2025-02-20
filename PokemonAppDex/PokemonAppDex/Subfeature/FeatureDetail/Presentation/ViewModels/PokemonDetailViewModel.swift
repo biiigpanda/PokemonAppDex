@@ -24,6 +24,14 @@ class PokemonDetailViewModel: BaseViewModel, ObservableObject {
         self.loadDetail()
     }
     
+    func getPokemonStats() -> [PokemonStats] {
+        if let pokemonstats = self.pokemonDetail?.stats {
+            return pokemonstats
+        } else {
+            return []
+        }
+    }
+    
     func loadDetail() {
         
         guard let idPokemon = dto?.idPokemon else {
