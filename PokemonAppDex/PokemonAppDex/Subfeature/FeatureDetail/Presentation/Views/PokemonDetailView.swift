@@ -27,31 +27,35 @@ struct PokemonDetailView: View {
                 PokemonCellView(name: viewModel.pokemonDetail?.pokemon.name ?? "",
                                 imageURL: viewModel.pokemonDetail?.pokemon.imageURL ?? URL(string: ""),
                                 id: viewModel.pokemonDetail?.pokemon.id ?? 0)
-                .frame(maxWidth: 320, maxHeight: 350)
+                .frame(maxWidth: 300, maxHeight: 310)
                 .padding(.horizontal, 12)
                 
             }
             VStack {
                 Text("Stats")
-                    .font(.custom("Gameplay", size: 16))
+                    .font(.custom("Gameplay", size: 20))
                     .padding(.top, 8)
                 ForEach(Array(viewModel.getPokemonStats().enumerated()), id: \.element.stat.name) { index, pokemonStat in
                     HStack() {
-                        Text(pokemonStat.stat.name)
-                            .frame(maxWidth: UIScreen.main.bounds.width * 0.25)
-                            .scenePadding()
+                        Text(pokemonStat.stat.name.formattedStatName())
+                            .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
+                            .font(.custom("Ketchum", size: 21))
                         Text("\(pokemonStat.baseStat)")
-                            .frame(maxWidth: UIScreen.main.bounds.width * 0.25)
+                            .frame(maxWidth: UIScreen.main.bounds.width * 0.2)
+                            .font(.custom("Gameplay", size: 18))
+
                         BarView(value: Double(pokemonStat.baseStat) / 255.0,
                                 barColor: arrayColors[index % arrayColors.count])
                         .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
                     }
                     .padding(.horizontal, 8)
+                    .scenePadding()
+
                 }
             }
             .background(Color(red: 208.0/255.0, green: 205.0/255.0, blue: 189.0/255.0, opacity: 0.5))
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
-            .frame(maxWidth: 320, maxHeight: .infinity)
+            .frame(maxWidth: 350, maxHeight: .infinity)
         }
         .onAppear {
             viewModel.onAppear()
@@ -92,5 +96,5 @@ struct PokemonDetailView: View {
 }
 
 #Preview {
-    PokemonDetailView(PokemonDetailViewModel(dto: PokemonDetailAssemblyDTO(idPokemon: 1, urlImage: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" ?? "")!)))
+    PokemonDetailView(PokemonDetailViewModel(dto: PokemonDetailAssemblyDTO(idPokemon: 3, urlImage: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" ?? "")!)))
 }
