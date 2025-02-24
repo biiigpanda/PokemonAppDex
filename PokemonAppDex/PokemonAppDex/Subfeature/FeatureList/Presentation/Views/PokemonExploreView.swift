@@ -15,7 +15,7 @@ struct PokemonExploreView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    let gridElements = [GridItem(.adaptive(minimum: 200, maximum: 250)),GridItem(.adaptive(minimum: 200, maximum: 250))]
+    let gridElements = [GridItem(.adaptive(minimum: 200, maximum: 280)),GridItem(.adaptive(minimum: 200, maximum: 280))]
     
     var body: some View {
         NavigationStack {
