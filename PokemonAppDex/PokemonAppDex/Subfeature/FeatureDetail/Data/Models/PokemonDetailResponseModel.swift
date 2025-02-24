@@ -10,4 +10,28 @@ struct PokemonDetailReponseModel: Codable {
     let name: String
     let height: Int
     let weight: Int
+    let stats: [PokemonStats]
+}
+
+struct PokemonStats: Codable, Hashable {
+    static func == (lhs: PokemonStats, rhs: PokemonStats) -> Bool {
+        return lhs.baseStat == rhs.baseStat
+    }
+    
+    let baseStat: Int
+    let stat: BaseStat
+    
+    enum CodingKeys: String, CodingKey {
+        case baseStat = "base_stat"
+        case stat
+    }
+}
+
+struct BaseStat: Codable, Hashable {
+    let name: String
+    let url: String
+    
+    static func == (lhs: BaseStat, rhs: BaseStat) -> Bool {
+        return lhs.name == rhs.name
+    }
 }

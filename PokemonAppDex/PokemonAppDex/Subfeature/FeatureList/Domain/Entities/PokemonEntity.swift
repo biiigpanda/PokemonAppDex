@@ -11,6 +11,7 @@ struct PokemonEntity: Hashable {
     let id: Int
     let name: String
     var imageURL: String
+    var stats: [PokemonStats] = []
     
     init?(pokemonResponse: PokemonResponseModel) {
         guard let urlComponents = URLComponents(string: pokemonResponse.url),
@@ -22,11 +23,13 @@ struct PokemonEntity: Hashable {
         self.id = id
         self.name = pokemonResponse.name
         self.imageURL = Constants.APIEndpoint.getPokemonImage(id: id).url?.absoluteString ?? ""
+        self.stats = []
     }
     
     init?(pokemonDetailResponse: PokemonDetailReponseModel) {
         self.id = pokemonDetailResponse.id
         self.name = pokemonDetailResponse.name
         self.imageURL = Constants.APIEndpoint.getPokemonImage(id: id).url?.absoluteString ?? ""
+        self.stats = pokemonDetailResponse.stats
     }
 }

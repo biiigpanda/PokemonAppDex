@@ -37,3 +37,18 @@ struct Constants {
         static let mainLogo = "main_logo"
     }
 }
+
+extension String {
+    func formattedStatName() -> String {
+        let mapping: [String: String] = [
+            "hp": "HP",
+            "attack": "Attack",
+            "defense": "Defense",
+            "special-attack": "S.Attack",
+            "special-defense": "S.Defense",
+            "speed": "Speed"
+        ]
+        
+        return mapping[self] ?? self.replacingOccurrences(of: "_", with: " ").capitalized
+    }
+}
