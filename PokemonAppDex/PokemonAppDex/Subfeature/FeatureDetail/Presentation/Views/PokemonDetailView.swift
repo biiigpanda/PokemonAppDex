@@ -92,7 +92,3 @@ struct PokemonDetailView: View {
         }
     }
 }
-
-#Preview {
-    PokemonDetailView(PokemonDetailViewModel(dto: PokemonDetailAssemblyDTO(idPokemon: 3, urlImage: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" ?? "")!)))
-}
