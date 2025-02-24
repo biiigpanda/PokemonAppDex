@@ -61,9 +61,7 @@ struct PokemonDetailView: View {
             viewModel.onAppear()
         }
     }
-    
     // he puesto un elemento independiente las barras para que se actualice correctamente la anchura de ellas
-    
     struct BarView: View {
         let value: Double
         let barColor: Color
