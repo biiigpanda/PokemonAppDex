@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Market Deco.ttf</string>
 		<string>Ketchum.otf</string>
 		<string>Ketchum Italic.otf</string>
 		<string>Gameplay.ttf</string>

@@ -27,16 +27,16 @@ struct PokemonCellView: View {
             }
             HStack {
                 Text(name.capitalized)
-                    .font(.custom("Gameplay", size: 16))
+                    .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
                 HStack {
                     Text("#\(id)")
-                        .font(.custom("Gameplay", size: 16))
+                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
                 }
                 .frame(alignment: .trailing)
             }
             .padding(.bottom, 8)
         }
-        .background(Color(red: 100.0/255.0, green: 205.0/255.0, blue: 189.0/255.0, opacity: 0.5))
+        .background(Colors.colorGreenCell)
         .clipShape(RoundedRectangle(cornerRadius: 8.0))
     }
 }

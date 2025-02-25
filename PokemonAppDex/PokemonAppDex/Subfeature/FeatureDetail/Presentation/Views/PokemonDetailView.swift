@@ -22,7 +22,7 @@ struct PokemonDetailView: View {
     var body: some View {
         VStack {
             if viewModel.pokemonDetail == nil {
-                Text("Loading...")
+                Text(Constants.Literals.loading)
             } else {
                 PokemonCellView(name: viewModel.pokemonDetail?.pokemon.name ?? "",
                                 imageURL: viewModel.pokemonDetail?.pokemon.imageURL ?? URL(string: ""),
@@ -32,17 +32,17 @@ struct PokemonDetailView: View {
                 
             }
             VStack {
-                Text("Stats")
-                    .font(.custom("Gameplay", size: 20))
+                Text(Constants.Literals.stats)
+                    .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 20))
                     .padding(.top, 8)
                 ForEach(Array(viewModel.getPokemonStats().enumerated()), id: \.element.stat.name) { index, pokemonStat in
                     HStack() {
                         Text(pokemonStat.stat.name.formattedStatName())
                             .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
-                            .font(.custom("Ketchum", size: 21))
+                            .font(.custom(Constants.IdentifierFont.fontKetchum, size: 21))
                         Text("\(pokemonStat.baseStat)")
                             .frame(maxWidth: UIScreen.main.bounds.width * 0.2)
-                            .font(.custom("Gameplay", size: 18))
+                            .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
 
                         BarView(value: Double(pokemonStat.baseStat) / 255.0,
                                 barColor: arrayColors[index % arrayColors.count])
@@ -53,7 +53,7 @@ struct PokemonDetailView: View {
 
                 }
             }
-            .background(Color(red: 208.0/255.0, green: 205.0/255.0, blue: 189.0/255.0, opacity: 0.5))
+            .background(Colors.colorOrangeStats)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
             .frame(maxWidth: 350, maxHeight: .infinity)
         }
@@ -91,8 +91,4 @@ struct PokemonDetailView: View {
                 }
         }
     }
-}
-
-#Preview {
-    PokemonDetailView(PokemonDetailViewModel(dto: PokemonDetailAssemblyDTO(idPokemon: 3, urlImage: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" ?? "")!)))
 }
