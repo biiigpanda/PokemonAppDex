@@ -53,7 +53,7 @@ struct PokemonDetailView: View {
 
                 }
             }
-            .background(Color(red: 208.0/255.0, green: 205.0/255.0, blue: 189.0/255.0, opacity: 0.5))
+            .background(Colors.colorOrangeStats)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
             .frame(maxWidth: 350, maxHeight: .infinity)
         }
