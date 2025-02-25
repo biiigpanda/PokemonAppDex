@@ -21,7 +21,7 @@ struct PokemonExploreView: View {
         NavigationStack {
             VStack(spacing: 4.0) {
                 Text("Pokedex")
-                    .font(.custom("Ketchum", size: 50))
+                    .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
                 searchBar
             }
    
@@ -53,13 +53,16 @@ struct PokemonExploreView: View {
     }
     
     var searchBar: some View {
-        HStack(spacing: 4.0) {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-                .padding(.leading, 5)
-            TextField(" Search by number or name", text: $viewModel.searchText)
-                .font(.custom("Market Deco", size: 20))
+        HStack(spacing: 8) {
+            if viewModel.searchText.isEmpty {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+            }
+            TextField(Constants.Literals.searchMain, text: $viewModel.searchText)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 300)
         }
+        .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal, 12)
         .frame(height: 30)
         .background(Color.white)
@@ -70,4 +73,5 @@ struct PokemonExploreView: View {
         )
         .cornerRadius(8)
     }
+
 }

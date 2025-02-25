@@ -27,10 +27,10 @@ struct PokemonCellView: View {
             }
             HStack {
                 Text(name.capitalized)
-                    .font(.custom("Gameplay", size: 16))
+                    .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
                 HStack {
                     Text("#\(id)")
-                        .font(.custom("Gameplay", size: 16))
+                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
                 }
                 .frame(alignment: .trailing)
             }

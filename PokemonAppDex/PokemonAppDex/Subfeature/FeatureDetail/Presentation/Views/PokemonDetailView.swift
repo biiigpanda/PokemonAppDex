@@ -22,7 +22,7 @@ struct PokemonDetailView: View {
     var body: some View {
         VStack {
             if viewModel.pokemonDetail == nil {
-                Text("Loading...")
+                Text(Constants.Literals.loading)
             } else {
                 PokemonCellView(name: viewModel.pokemonDetail?.pokemon.name ?? "",
                                 imageURL: viewModel.pokemonDetail?.pokemon.imageURL ?? URL(string: ""),
@@ -32,17 +32,17 @@ struct PokemonDetailView: View {
                 
             }
             VStack {
-                Text("Stats")
-                    .font(.custom("Gameplay", size: 20))
+                Text(Constants.Literals.stats)
+                    .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 20))
                     .padding(.top, 8)
                 ForEach(Array(viewModel.getPokemonStats().enumerated()), id: \.element.stat.name) { index, pokemonStat in
                     HStack() {
                         Text(pokemonStat.stat.name.formattedStatName())
                             .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
-                            .font(.custom("Ketchum", size: 21))
+                            .font(.custom(Constants.IdentifierFont.fontKetchum, size: 21))
                         Text("\(pokemonStat.baseStat)")
                             .frame(maxWidth: UIScreen.main.bounds.width * 0.2)
-                            .font(.custom("Gameplay", size: 18))
+                            .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
 
                         BarView(value: Double(pokemonStat.baseStat) / 255.0,
                                 barColor: arrayColors[index % arrayColors.count])

@@ -33,8 +33,19 @@ struct Constants {
         }
     }
     
-    enum Identifier {
+    enum IdentifierImg {
         static let mainLogo = "main_logo"
+    }
+    
+    enum Literals {
+        static let searchMain = String(localized: "Search by number or name")
+        static let stats = String(localized: "Stats")
+        static let loading = String(localized: "Loading...")
+    }
+    
+    enum IdentifierFont {
+        static let fontGamePlay = "GamePlay"
+        static let fontKetchum = "Ketchum"
     }
 }
 
