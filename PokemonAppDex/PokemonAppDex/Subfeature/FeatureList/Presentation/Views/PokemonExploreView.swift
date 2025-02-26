@@ -25,9 +25,10 @@ struct PokemonExploreView: View {
                         .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
                     searchBar
                 }
+                .padding(.bottom, 8)
                 list
-
             }
+            // Para la demo dejar estas lineas comentadas
             //            .searchable(text: $viewModel.searchText, prompt: "Search by number or name")
             //            .toolbar {
             //                ToolbarItem(placement: .principal) {
