@@ -36,6 +36,7 @@ struct PokemonCellView: View {
             .padding(.bottom, 8)
         }
         .background(Colors.colorGreenCell)
-        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+        .cornerRadius(15)
+        .shadow(color: .black, radius: 5, x: 0, y: 5)
     }
 }

@@ -15,7 +15,7 @@ struct PokemonExploreView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    let gridElements = [GridItem(.adaptive(minimum: 200, maximum: 280)),GridItem(.adaptive(minimum: 200, maximum: 280))]
+    let gridElements = [GridItem(.flexible(minimum: 200, maximum: 280), spacing: 10),GridItem(.flexible(minimum: 200, maximum: 280), spacing: 10)]
     
     var body: some View {
         NavigationStack {
@@ -25,19 +25,8 @@ struct PokemonExploreView: View {
                         .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
                     searchBar
                 }
-                ScrollView {
-                    LazyVGrid(columns: gridElements, content: {
-                        ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
-                            NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
-                                PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
-                                    .frame(maxWidth: 300, maxHeight: 220)
-                                    .foregroundStyle(.black)
-                            }
-                        }
-                    })
-                    .padding(.horizontal,12)
-                }
-                .navigationBarTitleDisplayMode(.inline)
+                list
+
             }
             //            .searchable(text: $viewModel.searchText, prompt: "Search by number or name")
             //            .toolbar {
@@ -74,6 +63,22 @@ struct PokemonExploreView: View {
                 .padding(.horizontal, 12)
         )
         .cornerRadius(8)
+    }
+    
+    var list: some View {
+        ScrollView {
+            LazyVGrid(columns: gridElements, spacing: 20.0, content: {
+                ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
+                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
+                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
+                            .frame(maxWidth: 200, maxHeight: 200)
+                            .foregroundStyle(.black)
+                    }
+                }
+            })
+            .padding(.horizontal, 12)
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
     
 }
