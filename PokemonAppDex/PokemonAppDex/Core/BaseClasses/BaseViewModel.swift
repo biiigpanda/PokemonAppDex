@@ -25,7 +25,7 @@ enum ViewModelState: String {
 /// Clase base donde definimos los metodos comunes a todos los ViewModel
 
 public class BaseViewModel {
-    @Published var state: ViewModelState = .okey
+    @Published var state: ViewModelState = .loading
     @Published var showWarningError = false
     @Published var alertButtonDisable = false
     

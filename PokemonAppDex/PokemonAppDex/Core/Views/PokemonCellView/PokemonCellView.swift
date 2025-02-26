@@ -23,13 +23,12 @@ struct PokemonCellView: View {
                         .image?
                         .resizable()
                 }
-                .scaledToFit()
             }
             HStack {
                 Text(name.capitalized)
                     .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
                 HStack {
-                    Text("#\(id)")
+                    Text(String(format: "#%03d", id))
                         .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
                 }
                 .frame(alignment: .trailing)
