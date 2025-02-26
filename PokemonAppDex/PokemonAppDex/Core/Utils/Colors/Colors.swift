@@ -8,5 +8,7 @@ import SwiftUI
 
 struct Colors {
     static let colorGreenCell: Color = Color("colorGreenCell")
+    static let colorGreenMid: Color = Color("colorGreenMid")
+    static let colorGreenDown: Color = Color("colorGreenDown")
     static let colorOrangeStats: Color = Color("colorOrangeStats")
 }

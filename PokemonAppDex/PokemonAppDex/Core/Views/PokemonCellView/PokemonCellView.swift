@@ -17,7 +17,6 @@ struct PokemonCellView: View {
             ZStack{
                 Image("img_pokeball")
                     .resizable()
-                    .opacity(0.8)
                 AsyncImage(url: imageURL) { image in
                     image
                         .image?
@@ -27,15 +26,18 @@ struct PokemonCellView: View {
             HStack {
                 Text(name.capitalized)
                     .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
-                HStack {
-                    Text(String(format: "#%03d", id))
-                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
-                }
-                .frame(alignment: .trailing)
+                Text(String(format: "#%03d", id))
+                    .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 16))
             }
-            .padding(.bottom, 8)
+            .padding(.bottom, 10)
+            .shadow(color: .white, radius: 5, x: 0, y: 5)
         }
-        .background(Colors.colorGreenCell)
+        //        .background(Colors.colorGreenCell)
+        .background(LinearGradient(gradient: Gradient(colors: [Colors.colorGreenCell,
+                                                               Colors.colorGreenMid,
+                                                               Colors.colorGreenDown,]),
+                                   startPoint: .bottom, endPoint: .top))
+        
         .cornerRadius(15)
         .shadow(color: .black, radius: 5, x: 0, y: 5)
     }

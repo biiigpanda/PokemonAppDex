@@ -25,7 +25,7 @@ struct PokemonExploreView: View {
                         .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
                     searchBar
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, 6)
                 list
             }
             // Para la demo dejar estas lineas comentadas
@@ -72,7 +72,7 @@ struct PokemonExploreView: View {
                 ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
                     NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
                         PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
-                            .frame(maxWidth: 200, maxHeight: 200)
+                            .frame(maxWidth: 190, maxHeight: 200)
                             .foregroundStyle(.black)
                     }
                 }
