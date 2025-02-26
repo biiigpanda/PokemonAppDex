@@ -15,28 +15,20 @@ struct PokemonExploreView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    let gridElements = [GridItem(.adaptive(minimum: 200, maximum: 280)),GridItem(.adaptive(minimum: 200, maximum: 280))]
+    let gridElements = [GridItem(.flexible(minimum: 200, maximum: 280), spacing: 10),GridItem(.flexible(minimum: 200, maximum: 280), spacing: 10)]
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 4.0) {
-                Text("Pokedex")
-                    .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
-                searchBar
+            if viewModel.state == .okey {
+                VStack(spacing: 4.0) {
+                    Text("Pokedex")
+                        .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
+                    searchBar
+                }
+                .padding(.bottom, 6)
+                list
             }
-   
-            ScrollView {
-                LazyVGrid(columns: gridElements, content: {
-                    ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
-                        NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
-                            PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
-                                .frame(maxWidth: 300, maxHeight: 220)
-                                .foregroundStyle(.black)
-                        }
-                    }
-                })
-                .padding(.horizontal,12)
-            }
+            // Para la demo dejar estas lineas comentadas
             //            .searchable(text: $viewModel.searchText, prompt: "Search by number or name")
             //            .toolbar {
             //                ToolbarItem(placement: .principal) {
@@ -44,12 +36,12 @@ struct PokemonExploreView: View {
             //                        .font(.custom("Ketchum", size: 50))
             //                }
             //            }
-            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             viewModel.onAppear()
         }
         .padding(.top, 8)
+        .loaderBase(state: self.viewModel.state)
     }
     
     var searchBar: some View {
@@ -73,5 +65,21 @@ struct PokemonExploreView: View {
         )
         .cornerRadius(8)
     }
-
+    
+    var list: some View {
+        ScrollView {
+            LazyVGrid(columns: gridElements, spacing: 20.0, content: {
+                ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
+                    NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
+                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
+                            .frame(maxWidth: 190, maxHeight: 200)
+                            .foregroundStyle(.black)
+                    }
+                }
+            })
+            .padding(.horizontal, 12)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
 }

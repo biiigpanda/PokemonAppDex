@@ -24,9 +24,9 @@ struct PokemonDetailView: View {
             if viewModel.pokemonDetail == nil {
                 Text(Constants.Literals.loading)
             } else {
-                PokemonCellView(name: viewModel.pokemonDetail?.pokemon.name ?? "",
-                                imageURL: viewModel.pokemonDetail?.pokemon.imageURL ?? URL(string: ""),
-                                id: viewModel.pokemonDetail?.pokemon.id ?? 0)
+                PokemonCellView(name: viewModel.pokemonDetail?.name ?? "",
+                                imageURL: viewModel.pokemonDetail?.imageURL ?? URL(string: ""),
+                                id: viewModel.pokemonDetail?.id ?? 0)
                 .frame(maxWidth: 300, maxHeight: 310)
                 .padding(.horizontal, 12)
                 
