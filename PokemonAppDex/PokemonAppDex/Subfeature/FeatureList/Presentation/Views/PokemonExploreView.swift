@@ -47,8 +47,9 @@ struct PokemonExploreView: View {
     var title: some View {
         HStack {
             imgPokeball
-            Text("Pokedex")
+            Text(Constants.Literals.pokedex)
                 .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
+                .foregroundStyle(.white)
             imgPokeball
         }
         .frame(maxWidth: .infinity)
@@ -56,7 +57,7 @@ struct PokemonExploreView: View {
     }
     
     var imgPokeball: some View {
-        Image("img_pokeball")
+        Image(Constants.IdentifierImg.pokeballImg)
             .resizable()
             .frame(width: 80.0, height: 80.0)
     }

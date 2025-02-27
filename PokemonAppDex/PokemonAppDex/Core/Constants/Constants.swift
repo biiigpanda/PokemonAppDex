@@ -35,12 +35,14 @@ struct Constants {
     
     enum IdentifierImg {
         static let mainLogo = "main_logo"
+        static let pokeballImg = "img_pokeball"
     }
     
     enum Literals {
         static let searchMain = String(localized: "Search by number or name")
         static let stats = String(localized: "Stats")
         static let loading = String(localized: "Loading...")
+        static let pokedex = String(localized: "Pokedex")
     }
     
     enum IdentifierFont {

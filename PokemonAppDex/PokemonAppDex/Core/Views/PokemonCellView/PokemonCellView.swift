@@ -15,7 +15,7 @@ struct PokemonCellView: View {
     var body: some View {
         VStack {
             ZStack{
-                Image("img_pokeball")
+                Image(Constants.IdentifierImg.pokeballImg)
                     .resizable()
                 AsyncImage(url: imageURL) { image in
                     image
@@ -32,7 +32,6 @@ struct PokemonCellView: View {
             .padding(.bottom, 10)
             .shadow(color: .white, radius: 5, x: 0, y: 5)
         }
-        //        .background(Colors.colorGreenCell)
         .background(LinearGradient(gradient: Gradient(colors: [Colors.colorGreenCell,
                                                                Colors.colorGreenMid,
                                                                Colors.colorGreenDown,]),
