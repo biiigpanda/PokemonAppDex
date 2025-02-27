@@ -25,7 +25,11 @@ struct PokemonExploreView: View {
                     searchBar
                 }
                 .padding(.bottom, 6)
-                list
+                if viewModel.filteredPokemonList.isEmpty {
+                    errorView
+                } else {
+                    list
+                }
             }
             // Para la demo dejar estas lineas comentadas
             //            .searchable(text: $viewModel.searchText, prompt: "Search by number or name")
@@ -89,9 +93,11 @@ struct PokemonExploreView: View {
             LazyVGrid(columns: gridElements, spacing: 20.0, content: {
                 ForEach(viewModel.filteredPokemonList, id: \.self) { pokemon in
                     NavigationLink(destination: PokemonDetailAssembly.view(dto: PokemonDetailAssemblyDTO(idPokemon: pokemon.id, urlImage: pokemon.imageURL!))) {
-                        PokemonCellView(name: pokemon.name, imageURL: pokemon.imageURL, id: pokemon.id)
-                            .frame(maxWidth: 190, maxHeight: 200)
-                            .foregroundStyle(.black)
+                        PokemonCellView(name: pokemon.name,
+                                        imageURL: pokemon.imageURL,
+                                        id: pokemon.id)
+                        .frame(maxWidth: 190, maxHeight: 200)
+                        .foregroundStyle(.black)
                     }
                 }
             })
@@ -100,4 +106,17 @@ struct PokemonExploreView: View {
         .navigationBarTitleDisplayMode(.large)
     }
     
+    var errorView: some View {
+        VStack(alignment: .center) {
+            Image(Constants.IdentifierImg.warnningSearch)
+                .resizable()
+                .frame(width: 150.0, height: 150.0)
+            Text(Constants.Literals.notDataFound)
+                .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
+                .multilineTextAlignment(.center)
+                .lineSpacing(6.0)
+            Spacer()
+        }
+        .padding(.horizontal, 12)
+    }
 }

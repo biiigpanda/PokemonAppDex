@@ -14,6 +14,9 @@
         }
       }
     },
+    "No se han encontrado datos del pokemon, vuelva a intentarlo." : {
+
+    },
     "Pokedex" : {
       "localizations" : {
         "es" : {

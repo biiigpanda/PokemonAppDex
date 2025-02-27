@@ -36,6 +36,7 @@ struct Constants {
     enum IdentifierImg {
         static let mainLogo = "main_logo"
         static let pokeballImg = "img_pokeball"
+        static let warnningSearch = "img_warnningSearch"
     }
     
     enum Literals {
@@ -43,6 +44,7 @@ struct Constants {
         static let stats = String(localized: "Stats")
         static let loading = String(localized: "Loading...")
         static let pokedex = String(localized: "Pokedex")
+        static let notDataFound = String(localized: "No se han encontrado datos del pokemon, vuelva a intentarlo.")
     }
     
     enum IdentifierFont {
