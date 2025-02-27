@@ -20,9 +20,8 @@ struct PokemonExploreView: View {
     var body: some View {
         NavigationStack {
             if viewModel.state == .okey {
-                VStack(spacing: 4.0) {
-                    Text("Pokedex")
-                        .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
+                VStack(spacing: 8.0) {
+                    title
                     searchBar
                 }
                 .padding(.bottom, 6)
@@ -42,6 +41,24 @@ struct PokemonExploreView: View {
         }
         .padding(.top, 8)
         .loaderBase(state: self.viewModel.state)
+        .ignoresSafeArea(.container, edges: .top)
+    }
+    
+    var title: some View {
+        HStack {
+            imgPokeball
+            Text("Pokedex")
+                .font(.custom(Constants.IdentifierFont.fontKetchum, size: 50))
+            imgPokeball
+        }
+        .frame(maxWidth: .infinity)
+        .background(.red)
+    }
+    
+    var imgPokeball: some View {
+        Image("img_pokeball")
+            .resizable()
+            .frame(width: 80.0, height: 80.0)
     }
     
     var searchBar: some View {
@@ -79,7 +96,7 @@ struct PokemonExploreView: View {
             })
             .padding(.horizontal, 12)
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.large)
     }
     
 }
