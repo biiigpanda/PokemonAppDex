@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
     static let pokeApiURL: String = "https://pokeapi.co/api/v2/"
@@ -65,5 +66,11 @@ extension String {
         ]
         
         return mapping[self] ?? self.replacingOccurrences(of: "_", with: " ").capitalized
+    }
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

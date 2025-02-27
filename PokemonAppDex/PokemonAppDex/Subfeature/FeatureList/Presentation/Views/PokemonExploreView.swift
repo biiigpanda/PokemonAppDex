@@ -103,6 +103,11 @@ struct PokemonExploreView: View {
             })
             .padding(.horizontal, 12)
         }
+        .simultaneousGesture(
+            DragGesture().onChanged { _ in
+                hideKeyboard()
+            }
+        )
         .navigationBarTitleDisplayMode(.large)
     }
     
@@ -110,11 +115,11 @@ struct PokemonExploreView: View {
         VStack(alignment: .center) {
             Image(Constants.IdentifierImg.warnningSearch)
                 .resizable()
-                .frame(width: 150.0, height: 150.0)
+                .frame(width: 180.0, height: 180.0)
             Text(Constants.Literals.notDataFound)
                 .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
                 .multilineTextAlignment(.center)
-                .lineSpacing(6.0)
+                .lineSpacing(5.0)
             Spacer()
         }
         .padding(.horizontal, 12)

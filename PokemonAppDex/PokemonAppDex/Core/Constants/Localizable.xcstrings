@@ -15,7 +15,20 @@
       }
     },
     "No se han encontrado datos del pokemon, vuelva a intentarlo." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\nNo pokemon data found, try again."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se han encontrado datos del pokemon, vuelva a intentarlo."
+          }
+        }
+      }
     },
     "Pokedex" : {
       "localizations" : {
