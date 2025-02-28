@@ -13,7 +13,7 @@ struct PokemonDetailView: View {
     @State var barWidth: Double = 0.0
     
     let arrayColors: [Color] = [.green, .red, .blue, .purple, .pink, .yellow]
-
+    
     
     init(_ viewModel: PokemonDetailViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -31,36 +31,41 @@ struct PokemonDetailView: View {
                 .padding(.horizontal, 12)
                 
             }
-            VStack {
-                Text(Constants.Literals.stats)
-                    .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 20))
-                    .padding(.top, 8)
-                ForEach(Array(viewModel.getPokemonStats().enumerated()), id: \.element.stat.name) { index, pokemonStat in
-                    HStack() {
-                        Text(pokemonStat.stat.name.formattedStatName())
-                            .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
-                            .font(.custom(Constants.IdentifierFont.fontKetchum, size: 21))
-                        Text("\(pokemonStat.baseStat)")
-                            .frame(maxWidth: UIScreen.main.bounds.width * 0.2)
-                            .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
-
-                        BarView(value: Double(pokemonStat.baseStat) / 255.0,
-                                barColor: arrayColors[index % arrayColors.count])
-                        .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
-                    }
-                    .padding(.horizontal, 8)
-                    .scenePadding()
-
-                }
-            }
-            .background(Colors.colorOrangeStats)
-            .clipShape(RoundedRectangle(cornerRadius: 8.0))
-            .frame(maxWidth: 350, maxHeight: .infinity)
+            statsView
         }
         .onAppear {
             viewModel.onAppear()
         }
     }
+    
+    var statsView: some View {
+        VStack {
+            Text(Constants.Literals.stats)
+                .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 20))
+                .padding(.top, 8)
+            ForEach(Array(viewModel.getPokemonStats().enumerated()), id: \.element.stat.name) { index, pokemonStat in
+                HStack() {
+                    Text(pokemonStat.stat.name.formattedStatName())
+                        .frame(maxWidth: UIScreen.main.bounds.width * 0.3)
+                        .font(.custom(Constants.IdentifierFont.fontKetchum, size: 21))
+                    Text("\(pokemonStat.baseStat)")
+                        .frame(maxWidth: UIScreen.main.bounds.width * 0.2)
+                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
+                    
+                    BarView(value: Double(pokemonStat.baseStat) / 255.0,
+                            barColor: arrayColors[index % arrayColors.count])
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.5)
+                }
+                .padding(.horizontal, 8)
+                .scenePadding()
+                
+            }
+        }
+        .background(Colors.colorOrangeStats)
+        .clipShape(RoundedRectangle(cornerRadius: 8.0))
+        .frame(maxWidth: 350, maxHeight: .infinity)
+    }
+    // MARK: Barview
     // he puesto un elemento independiente las barras para que se actualice correctamente la anchura de ellas
     struct BarView: View {
         let value: Double
@@ -82,7 +87,7 @@ struct PokemonDetailView: View {
                             .border(.black)
                     }
                 })
-
+            
                 .clipShape(RoundedRectangle(cornerRadius: 6))
                 .onAppear {
                     withAnimation(.easeOut(duration: 1.0)) {
