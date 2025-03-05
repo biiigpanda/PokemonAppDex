@@ -12,6 +12,7 @@ struct PokemonDetailEntity {
     let height: Int
     let weight: Int
     let stats: [PokemonStats]
+    let types: [PokemonTypes]
     
     init?(pokemonDetailResponse: PokemonDetailReponseModel) {
         guard let pokemon = PokemonEntity(pokemonDetailResponse: pokemonDetailResponse) else {
@@ -22,5 +23,6 @@ struct PokemonDetailEntity {
         self.height = pokemonDetailResponse.height
         self.weight = pokemonDetailResponse.weight
         self.stats = pokemonDetailResponse.stats
+        self.types = pokemonDetailResponse.types
     }
 }

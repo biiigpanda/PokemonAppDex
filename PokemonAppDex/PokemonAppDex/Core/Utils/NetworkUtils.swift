@@ -29,16 +29,16 @@ class NetworkUtils {
         guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
             throw URLError(.badServerResponse)
         }
-        
+
         /* response as? HTTPURLResponse: Verifica que la respuesta sea una instancia de HTTPURLResponse, que contiene información específica del protocolo HTTP (como el código de estado).
          200..<300 ~= httpResponse.statusCode: Comprueba si el código de estado de la respuesta está en el rango 200-299 (lo que indica éxito). Si no es así, lanza un error URLError(.badServerResponse).*/
         
         let decodedData = try JSONDecoder().decode(T.self, from: data)
+        print("decodedData: \(decodedData.self)")
         
         /* Usa un JSONDecoder para decodificar los datos en un objeto del tipo T.
          T.self: Se refiere al tipo genérico T en tiempo de ejecución.
          Si los datos no coinciden con la estructura del tipo T esperado, se lanza un error de decodificación.*/
-        
         return decodedData
     }
 }

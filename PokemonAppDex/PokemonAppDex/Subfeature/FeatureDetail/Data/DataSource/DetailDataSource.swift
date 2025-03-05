@@ -12,7 +12,8 @@ class DetailDataSource {
         guard let url: URL = Constants.APIEndpoint.getPokemonDetails(id: id).url else {
             throw URLError(.badURL)
         }
-        
+        var pokemon: PokemonDetailReponseModel = try await NetworkUtils.shared.fetch(from: url)
+        print(pokemon)
         return try await NetworkUtils.shared.fetch(from: url)
     }
 }

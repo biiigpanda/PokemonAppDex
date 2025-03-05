@@ -11,7 +11,11 @@ struct PokemonDetailReponseModel: Codable {
     let height: Int
     let weight: Int
     let stats: [PokemonStats]
+    let types: [PokemonTypes]
+    let species: Species
 }
+
+// MARK: Base Stats of Pokemon
 
 struct PokemonStats: Codable, Hashable {
     static func == (lhs: PokemonStats, rhs: PokemonStats) -> Bool {
@@ -19,7 +23,7 @@ struct PokemonStats: Codable, Hashable {
     }
     
     let baseStat: Int
-    let stat: BaseStat
+    let stat: BaseCharacteristic
     
     enum CodingKeys: String, CodingKey {
         case baseStat = "base_stat"
@@ -27,11 +31,37 @@ struct PokemonStats: Codable, Hashable {
     }
 }
 
-struct BaseStat: Codable, Hashable {
-    let name: String
-    let url: String
+// MARK: Get Species for to obtain a description
+
+struct PokemonSpecies: Codable {
+    let forms: BaseCharacteristic
+}
+
+// MARK: Get types of Pokemon
+
+struct PokemonTypes: Codable, Hashable {
+    static func == (lhs: PokemonTypes, rhs: PokemonTypes) -> Bool {
+        return lhs.slot == rhs.slot
+    }
     
-    static func == (lhs: BaseStat, rhs: BaseStat) -> Bool {
-        return lhs.name == rhs.name
+    let slot: Int
+    let type: BaseCharacteristic
+    
+    enum CodingKeys: String, CodingKey {
+        case slot = "slot"
+        case type = "type"
     }
 }
+
+struct BaseCharacteristic: Codable, Hashable  {
+    let name: String
+    let url: String
+}
+
+// MARK: - Species
+struct Species: Codable, Hashable {
+    let name: String
+    let url: String
+}
+
+

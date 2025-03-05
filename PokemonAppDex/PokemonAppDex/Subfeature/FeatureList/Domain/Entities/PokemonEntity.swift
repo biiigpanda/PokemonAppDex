@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct PokemonEntity: Hashable {
+struct PokemonEntity {
     let id: Int
     let name: String
     var imageURL: String
     var stats: [PokemonStats] = []
+    var types: [PokemonTypes] = []
+    var species: Species? = nil
     
     init?(pokemonResponse: PokemonResponseModel) {
         guard let urlComponents = URLComponents(string: pokemonResponse.url),
@@ -24,6 +26,7 @@ struct PokemonEntity: Hashable {
         self.name = pokemonResponse.name
         self.imageURL = Constants.APIEndpoint.getPokemonImage(id: id).url?.absoluteString ?? ""
         self.stats = []
+        self.types = []
     }
     
     init?(pokemonDetailResponse: PokemonDetailReponseModel) {
@@ -31,5 +34,7 @@ struct PokemonEntity: Hashable {
         self.name = pokemonDetailResponse.name
         self.imageURL = Constants.APIEndpoint.getPokemonImage(id: id).url?.absoluteString ?? ""
         self.stats = pokemonDetailResponse.stats
+        self.types = pokemonDetailResponse.types
+        self.species = pokemonDetailResponse.species
     }
 }
