@@ -39,7 +39,6 @@ class PokemonExploreViewModel: BaseViewModel, ObservableObject {
                 self.pokemonsCell = self.pokemonsCell.sorted(by: { $0.id < $1.id })
                 self.state = .okey
             } catch let error{
-                print("error\(error.localizedDescription)")
                 self.state = .error
                 showError = true
             }
@@ -53,7 +52,6 @@ class PokemonExploreViewModel: BaseViewModel, ObservableObject {
             try await withThrowingTaskGroup(of: (PokemonEntity?).self, body: { group in
                 
                 pokemonList.forEach { pokemon in
-                    print("pokemon \(pokemon)")
 
                     if (pokemon.id != 0) {
                         group.addTask {
@@ -68,7 +66,6 @@ class PokemonExploreViewModel: BaseViewModel, ObservableObject {
                         guard let model = PokemonModel(pokemon: pokem) else {
                             return
                         }
-                        print("model \(model)")
 
                         pokemonsCell.append(model)
                     }
@@ -76,8 +73,6 @@ class PokemonExploreViewModel: BaseViewModel, ObservableObject {
             })
             
         } catch let error  {
-            print("error func detail \(error)")
-            print("error func detail \(error.localizedDescription)")
 
             self.state = .error
             showError = true

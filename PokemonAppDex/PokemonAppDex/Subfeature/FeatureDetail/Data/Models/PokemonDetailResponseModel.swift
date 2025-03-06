@@ -5,6 +5,8 @@
 //  Created by Marc Gallardo on 20/2/25.
 //
 
+import Foundation
+
 struct PokemonDetailReponseModel: Codable {
     let id: Int
     let name: String
@@ -39,7 +41,8 @@ struct PokemonSpecies: Codable {
 
 // MARK: Get types of Pokemon
 
-struct PokemonTypes: Codable, Hashable {
+struct PokemonTypes: Codable, Hashable, Identifiable {
+    var id: UUID = UUID()
     static func == (lhs: PokemonTypes, rhs: PokemonTypes) -> Bool {
         return lhs.slot == rhs.slot
     }
@@ -49,7 +52,7 @@ struct PokemonTypes: Codable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case slot = "slot"
-        case type = "type"
+        case type
     }
 }
 

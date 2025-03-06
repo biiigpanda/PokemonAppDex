@@ -34,7 +34,6 @@ class NetworkUtils {
          200..<300 ~= httpResponse.statusCode: Comprueba si el código de estado de la respuesta está en el rango 200-299 (lo que indica éxito). Si no es así, lanza un error URLError(.badServerResponse).*/
         
         let decodedData = try JSONDecoder().decode(T.self, from: data)
-        print("decodedData: \(decodedData.self)")
         
         /* Usa un JSONDecoder para decodificar los datos en un objeto del tipo T.
          T.self: Se refiere al tipo genérico T en tiempo de ejecución.

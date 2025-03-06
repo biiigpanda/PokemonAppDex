@@ -20,22 +20,36 @@ struct PokemonDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            if viewModel.pokemonDetail == nil {
-                Text(Constants.Literals.loading)
-            } else {
-                PokemonCellView(name: viewModel.pokemonDetail?.name ?? "",
-                                imageURL: viewModel.pokemonDetail?.imageURL ?? URL(string: ""),
-                                id: viewModel.pokemonDetail?.id ?? 0)
-                .frame(maxWidth: 300, maxHeight: 310)
-                .padding(.horizontal, 12)
-                
+        ScrollView {
+            VStack {
+                if viewModel.pokemonDetail == nil {
+                    Text(Constants.Literals.loading)
+                } else {
+                    PokemonCellView(name: viewModel.pokemonDetail?.name ?? "",
+                                    imageURL: viewModel.pokemonDetail?.imageURL ?? URL(string: ""),
+                                    id: viewModel.pokemonDetail?.id ?? 0)
+                    .frame(maxWidth: 300, maxHeight: 310)
+                    .padding(.horizontal, 12)
+                    typesView
+                        .padding(.top, 12)
+                }
+                statsView
             }
-            statsView
+            .onAppear {
+                viewModel.onAppear()
+            }
         }
-        .onAppear {
-            viewModel.onAppear()
+        .scrollIndicators(.hidden)
+    }
+    
+    var typesView: some View {
+        VStack(spacing: 20) {
+                ForEach(viewModel.getPokemonTypes()) { type in
+                    Text("\(type.type.name.capitalized)")
+                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
+                }
         }
+        .padding(.bottom, 12)
     }
     
     var statsView: some View {
