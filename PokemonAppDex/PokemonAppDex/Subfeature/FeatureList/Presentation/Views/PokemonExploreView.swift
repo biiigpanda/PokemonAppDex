@@ -26,6 +26,7 @@ struct PokemonExploreView: View {
                 }
                 .padding(.bottom, 6)
                 if viewModel.filteredPokemonList.isEmpty {
+                    //cambiar nombre de view a emptyView
                     errorView
                 } else {
                     list
@@ -72,7 +73,8 @@ struct PokemonExploreView: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
             }
-            TextField(Constants.Literals.searchMain, text: $viewModel.searchText)
+            TextField(Constants.Literals.searchMain,
+                      text: $viewModel.searchText)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 300)
         }

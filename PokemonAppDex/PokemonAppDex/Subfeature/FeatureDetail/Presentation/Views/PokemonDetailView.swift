@@ -30,9 +30,9 @@ struct PokemonDetailView: View {
                                     id: viewModel.pokemonDetail?.id ?? 0)
                     .frame(maxWidth: 300, maxHeight: 310)
                     .padding(.horizontal, 12)
-                    typesView
-                        .padding(.top, 12)
                 }
+                typesView
+                    .padding(.top, 16)
                 statsView
             }
             .onAppear {
@@ -44,12 +44,26 @@ struct PokemonDetailView: View {
     
     var typesView: some View {
         VStack(spacing: 20) {
-                ForEach(viewModel.getPokemonTypes()) { type in
-                    Text("\(type.type.name.capitalized)")
-                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 18))
+            ForEach(viewModel.getPokemonTypes(), id: \.self) { type in
+                HStack {
+                    Image(type.imgName)
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                    Text("\(type.name)")
+                        .font(.custom(Constants.IdentifierFont.fontGamePlay, size: 20))
+                        .padding(.trailing, 8)
                 }
+                .background(LinearGradient(gradient: Gradient(colors: [Colors.colorOrangeUp,
+                                                                       Colors.colorOrangeMid,
+                                                                       Colors.colorOrangeDown,]),
+                                           startPoint: .topTrailing, endPoint: .bottomLeading))
+                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                .shadow(color: .black, radius: 5, x: 0, y: 5)
+            }
         }
-        .padding(.bottom, 12)
+        .frame(width: 300)
+
+        .padding(.bottom, 16)
     }
     
     var statsView: some View {
